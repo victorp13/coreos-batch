@@ -1,6 +1,7 @@
 import os
 import digitalocean
 import requests
+import time
 
 DO_TOKEN = os.environ.get("DO_TOKEN", None)
 DO_FINGERPRINT = os.environ.get("DO_FINGERPRINT", None)
@@ -24,7 +25,13 @@ droplet = digitalocean.Droplet(token=DO_TOKEN,
 							   user_data=config_file)
 droplet.create()
 
-print "droplet #1 created"
+time.sleep(5)
+
+droplet = manager.get_droplet(droplet.id)
+
+os.system("ssh-keygen -R droplet.ip_address > /dev/null 2>&1")
+
+print "droplet #1 created with public ip address: %s" % droplet.ip_address
 
 droplet = digitalocean.Droplet(token=DO_TOKEN,
                                name='coreos-2',
@@ -36,7 +43,13 @@ droplet = digitalocean.Droplet(token=DO_TOKEN,
 							   user_data=config_file)
 droplet.create()
 
-print "droplet #2 created"
+time.sleep(5)
+
+droplet = manager.get_droplet(droplet.id)
+
+os.system("ssh-keygen -R droplet.ip_address > /dev/null 2>&1")
+
+print "droplet #2 created with public ip address: %s" % droplet.ip_address
 
 droplet = digitalocean.Droplet(token=DO_TOKEN,
                                name='coreos-3',
@@ -48,4 +61,10 @@ droplet = digitalocean.Droplet(token=DO_TOKEN,
 							   user_data=config_file)
 droplet.create()
 
-print "droplet #3 created"
+time.sleep(5)
+
+droplet = manager.get_droplet(droplet.id)
+
+os.system("ssh-keygen -R droplet.ip_address > /dev/null 2>&1")
+
+print "droplet #3 created with public ip address: %s" % droplet.ip_address
