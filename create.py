@@ -29,8 +29,6 @@ time.sleep(5)
 
 droplet = manager.get_droplet(droplet.id)
 
-os.system("ssh-keygen -R droplet.ip_address > /dev/null 2>&1")
-
 print "droplet #1 created with public ip address: %s" % droplet.ip_address
 
 droplet = digitalocean.Droplet(token=DO_TOKEN,
@@ -47,8 +45,6 @@ time.sleep(5)
 
 droplet = manager.get_droplet(droplet.id)
 
-os.system("ssh-keygen -R droplet.ip_address > /dev/null 2>&1")
-
 print "droplet #2 created with public ip address: %s" % droplet.ip_address
 
 droplet = digitalocean.Droplet(token=DO_TOKEN,
@@ -64,7 +60,5 @@ droplet.create()
 time.sleep(5)
 
 droplet = manager.get_droplet(droplet.id)
-
-os.system("ssh-keygen -R droplet.ip_address > /dev/null 2>&1")
 
 print "droplet #3 created with public ip address: %s" % droplet.ip_address
